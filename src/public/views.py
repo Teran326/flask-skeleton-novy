@@ -36,3 +36,10 @@ def masof():
     if form.validate_on_submit():
         return render_template('public/masovystup.tmpl',hod1=form.hodnota1.data,hod2=form.hodnota2.data,suma=form.hodnota1.data+form.hodnota2.data)
     return render_template('public/maso.tmpl', form=form)
+#---------------------------------------------------------------------------------------------------------------------------------
+@blueprint.route('/ocformular' methods=['GET','POST'])
+def ocapp():
+    form = ocform()
+    if form.validate_on_submit():
+        return "OK"
+    return render_template("public/ocformular.tmpl", form = form)
