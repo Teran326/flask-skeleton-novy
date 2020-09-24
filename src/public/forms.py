@@ -49,7 +49,7 @@ class ocform(Form):
                                                                        InputRequired(message="vyzadovano")])
     b = FloatField("Strana b:", validators=[NumberRange(min=0, message="Hodnota musi byt vetsi nez nula"),
                                             InputRequired(message="vyzadovano")])
-    obrazec = SelectField("Obrazec", choices=[(1, "Ctverec a"),\
-                                              (2, "Obdelnik ab"),\
-                                              (3,"Trojuhelnik abc")], default=1)
+    obrazec = SelectField("Obrazec", choices=[("1", "Ctverec a"),\
+                                              ("2", "Obdelnik ab"),\
+                                              ("3","Trojuhelnik abc")], default=1)
 
