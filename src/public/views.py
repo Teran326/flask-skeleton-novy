@@ -4,7 +4,7 @@ Logic for dashboard related routes
 from flask import Blueprint, render_template
 from .forms import LogUserForm, secti, masoform, ocform
 from ..data.database import db
-from ..data.models import LogUser
+from ..data.models import LogUser, Stock
 blueprint = Blueprint('public', __name__)
 
 @blueprint.route('/', methods=['GET'])
@@ -47,3 +47,20 @@ def ocapp():
         elif form.obrazec.data=="2":
             return str(form.a.data * form.b.data)
     return render_template("public/ocvystup.tmpl", form = form)
+
+@blueprint.route('/simple_chart')
+def chart():
+    legend = 'Monthly Data'
+    labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    values = [10, 9, 8, 7, 6, 4, 7, 8]
+    return render_template('public/chart.tmpl', values=values, labels=labels, legend=legend)
+@blueprint.route('/vloz_radek')
+def vloz_radek():
+    text = "AHOJ"
+    Stock.create(firma='Autocont', firma_zkratka="xxx",jmenovita_hodnota=100, posledni_cena=101, grade="Cojavim")
+    return "OK"
+
+@blueprint.route('/vypis_tabulky')
+def vypis_tabulky():
+    pole = db.session.query(Stock).all()
+    return render_template("vypis_tabulky.tmpl", pole = pole)
