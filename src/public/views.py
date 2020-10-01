@@ -63,4 +63,4 @@ def vloz_radek():
 @blueprint.route('/vypis_tabulky')
 def vypis_tabulky():
     pole = db.session.query(Stock).all()
-    return render_template("vypis_tabulky.tmpl", pole = pole)
+    return render_template("public/vypis_tabulky.tmpl", pole = pole)
